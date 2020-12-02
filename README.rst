@@ -22,6 +22,8 @@ Compatibility
 Licence
 -------
 
+GNU GENERAL PUBLIC LICENSE Version 3
+
 Authors
 -------
 
