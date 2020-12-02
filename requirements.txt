@@ -1,0 +1,4 @@
+mypy
+requests
+click
+pymongo
