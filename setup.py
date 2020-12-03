@@ -15,7 +15,7 @@ def read(filename):
 
 setup(
     name="wilma_schedules_reader",
-    version="0.1.1",
+    version="0.1.2",
     url="wilma_schedules_reader",
     license="GNU GENERAL PUBLIC LICENSE Version 3",
     author="Pasi Ollikainen",
