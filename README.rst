@@ -14,6 +14,8 @@ From git repo:
 
  python3 wilma_schedules_reader/reader.py rooms 01.01.2020 10.01.2020 some.domain.name user password apikey data/
 
+ .. image::
+
 Installation
 ------------
 
