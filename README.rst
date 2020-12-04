@@ -7,7 +7,7 @@ WilmaJSONReader
 
 The Wilma rest client.
 
-Support getting daily data or daterange of the following resources: rooms, teachers and students.
+Supports getting daily data or date range of the resource. Valid resource type are rooms, teachers and students.
 
 Usage
 -----
