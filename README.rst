@@ -29,7 +29,7 @@ As library
         apikey,
     )
     wilma_reader.login()
-    dates = wilma_reader.get_dates(os.environ["STARTD"], os.environ["ENDD"], logger)
+    dates = wilma_reader.get_dates("01.01.2020", "10.01.2020", logger)
     
     for day in dates:
         r = wilma_reader.get_schedule(day, "rooms")
