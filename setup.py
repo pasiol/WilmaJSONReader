@@ -15,15 +15,20 @@ def read(filename):
 
 setup(
     name="WilmaJSONReader",
+    packages=["WilmaJSONClient"],
     version="0.2.2",
     url="WilmaJSONReader",
     license="GNU GENERAL PUBLIC LICENSE Version 3",
     author="Pasi Ollikainen",
     author_email="pasi.ollikainen@outlook.com",
-    description="The rest client which reads shedules from the .",
+    description="The Wilma Rest client.",
     long_description=read("README.rst"),
-    packages=find_packages(exclude=("tests",)),
-    install_requires=[],
+    install_requires=[
+        "mypy>=0.790",
+        "validators>=0.18.1",
+        "requests>=2.25.0",
+        "typing-extensions>=3.7.4.3",
+    ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE Version 3",

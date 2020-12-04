@@ -1,3 +1,4 @@
+from _typeshed import NoneType
 import sys
 import hashlib
 import time
@@ -8,7 +9,7 @@ import click
 import validators
 import mypy
 from datetime import date, timedelta
-from typing import List
+from typing import List, Optional
 
 
 class WilmaJSONReader:
@@ -104,7 +105,9 @@ class WilmaJSONReader:
         else:
             return False
 
-    def get_schedule(self, day: str, resource_type: str) -> requests.models.Response:
+    def get_schedule(
+        self, day: str, resource_type: str
+    ) -> Optional[requests.models.Response]:
         schedule = None
         try:
             schedule = f"schedule/index_json?p={day}&f={day}&{resource_type}=all"
