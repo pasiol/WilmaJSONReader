@@ -10,6 +10,8 @@ The Wilma rest client.
 Usage
 -----
 
+Wilma JSON schema is quite complex to parse. Easiest is use some framework to parsing data, for example the MongoDB Aggregation Framework.
+
 From git repo::
 
  python3 WilmaJSONReader/reader.py rooms 01.01.2020 10.01.2020 some.domain.name user password apikey data/
@@ -39,7 +41,22 @@ As library::
 Installation
 ------------
 
-pip install WilmaJSONReader
+Easiest way is install WilmaJSONReader from PyPi. Before installation create Python virtual environment or install it to container image.
+
+Linux && Mac::
+
+    python3 -m venv venv
+    source venv/bin/activate
+
+    pip install WilmaJSONReader
+
+    ..
+
+    deactivate
+
+Upgrade
+
+    pip install WilmaJSONReader -U
 
 Requirements
 ^^^^^^^^^^^^
