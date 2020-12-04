@@ -15,14 +15,13 @@ def read(filename):
 
 setup(
     name="WilmaJSONReader",
-    packages=["WilmaJSONClient"],
+    packages=["WilmaJSONReader"],
     version="0.2.2",
-    url="WilmaJSONReader",
-    license="GNU GENERAL PUBLIC LICENSE Version 3",
+    url="https://github.com/pasiol/WilmaJSONReader",
+    license="GNU Lesser General Public License v3.0 or later (LGPLv3.0+)",
     author="Pasi Ollikainen",
     author_email="pasi.ollikainen@outlook.com",
     description="The Wilma Rest client.",
-    long_description=read("README.rst"),
     install_requires=[
         "mypy>=0.790",
         "validators>=0.18.1",
@@ -31,7 +30,7 @@ setup(
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
-        "License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE Version 3",
+        "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.8",
     ],
