@@ -21,10 +21,10 @@ class WilmaJSONReader:
     _user = None
     _password = None
 
-    def _init_(self, wilma_url: str, user: str, password: str, apikey: str):
+    def __init__(self, wilma_url: str, user: str, password: str, apikey: str):
 
         logging.basicConfig(level=logging.INFO)
-        self.logger = logging.getLogger(_name_)
+        self.logger = logging.getLogger(__name__)
         self.wilma_url = f"https://{wilma_url}/"
         if not validators.url(self.wilma_url):
             self.logger.critical(f"Wilma URL {self.wilma_url} is not valid.")
