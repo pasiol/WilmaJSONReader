@@ -16,22 +16,22 @@ class WilmaJSONReader:
     logger = None
     wilma_url = None
     session = requests.Session()
-    __session_api_key = None
-    __apikey = None
-    __user = None
-    __password = None
+    _session_api_key = None
+    _apikey = None
+    _user = None
+    _password = None
 
-    def __init__(self, wilma_url: str, user: str, password: str, apikey: str):
+    def _init_(self, wilma_url: str, user: str, password: str, apikey: str):
 
         logging.basicConfig(level=logging.INFO)
-        self.logger = logging.getLogger(__name__)
+        self.logger = logging.getLogger(_name_)
         self.wilma_url = f"https://{wilma_url}/"
         if not validators.url(self.wilma_url):
             self.logger.critical(f"Wilma URL {self.wilma_url} is not valid.")
             sys.exit(1)
-        self.__user = user
-        self.__password = password
-        self.__apikey = apikey
+        self._user = user
+        self._password = password
+        self._apikey = apikey
         self.logger.info(f"WilmaJSONReader object initialized succesfully.")
 
     def get_session_key(self) -> str:
@@ -49,14 +49,14 @@ class WilmaJSONReader:
 
     def login(self):
         sessionid = self.get_session_key()
-        self.__session_api_key = hashlib.sha1(
-            str(f"{self.__user}|{sessionid}|{self.__apikey}").encode("utf-8")
+        self._session_api_key = hashlib.sha1(
+            str(f"{self._user}|{sessionid}|{self._apikey}").encode("utf-8")
         ).hexdigest()
         data = {
-            "Login": self.__user,
-            "Password": self.__password,
+            "Login": self._user,
+            "Password": self._password,
             "SessionId": sessionid,
-            "ApiKey": "sha1:" + self.__session_api_key,
+            "ApiKey": "sha1:" + self._session_api_key,
             "format": "json",
         }
         headers = {"accept": "application/json"}
@@ -73,7 +73,7 @@ class WilmaJSONReader:
             )
             sys.exit(1)
 
-    def __fidate2pydate(self, fi_date: str, logger: logging.Logger) -> date:
+    def _fidate2pydate(self, fi_date: str, logger: logging.Logger) -> date:
         try:
             splitted_date = str(fi_date).split(".")
             return date(
@@ -83,22 +83,22 @@ class WilmaJSONReader:
             self.logger.error(f"Getting timedelta failed: {error}")
             sys.exit(1)
 
-    def __get_time_delta(
+    def _get_time_delta(
         self, start: str, end: str, logger: logging.Logger
     ) -> timedelta:
-        s = self.__fidate2pydate(start, logger)
-        e = self.__fidate2pydate(end, logger)
+        s = self._fidate2pydate(start, logger)
+        e = self._fidate2pydate(end, logger)
         return e - s
 
     def get_dates(self, start: str, end: str, logger: logging.Logger) -> List[str]:
         dates = list()
-        delta = self.__get_time_delta(start, end, logger)
+        delta = self._get_time_delta(start, end, logger)
         for d in range(delta.days + 1):
-            day = self.__fidate2pydate(start, logger) + timedelta(days=d)
+            day = self._fidate2pydate(start, logger) + timedelta(days=d)
             dates.append(str(day.strftime("%d.%m.%Y")))
         return dates
 
-    def __validate_schedule_type(self, type: str) -> bool:
+    def _validate_schedule_type(self, type: str) -> bool:
         if type in ["rooms", "teachers", "students"]:
             return True
         else:
@@ -108,7 +108,7 @@ class WilmaJSONReader:
         self, day: str, resource_type: str
     ) -> Optional[requests.models.Response]:
         schedule = None
-        if self.__validate_schedule_type(resource_type):
+        if self._validate_schedule_type(resource_type):
             try:
                 schedule = f"schedule/index_json?p={day}&f={day}&{resource_type}=all"
                 r = self.session.get(self.wilma_url + schedule)
@@ -184,5 +184,5 @@ def main(
         reader.logger.info(f"Processed resource {resource_type} at the date {day}.")
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()  # pylint: disable=no-value-for-parameter
