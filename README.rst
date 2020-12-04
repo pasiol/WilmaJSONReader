@@ -10,13 +10,13 @@ The Wilma rest client.
 Usage
 -----
 
-From git repo:
+From git repo::
 
  python3 WilmaJSONReader/reader.py rooms 01.01.2020 10.01.2020 some.domain.name user password apikey data/
 
- .. image:: https://github.com/pasiol/WilmaJSONReader/raw/main/images/rooms.png
+.. image:: https://github.com/pasiol/WilmaJSONReader/raw/main/images/rooms.png
 
-As library
+As library::
 
     from WilmaJSONReader import reader
 
