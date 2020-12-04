@@ -184,5 +184,5 @@ def main(
         reader.logger.info(f"Processed resource {resource_type} at the date {day}.")
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()  # pylint: disable=no-value-for-parameter
