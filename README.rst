@@ -15,11 +15,36 @@ From git repo:
  python3 WilmaJSONReader/reader.py rooms 01.01.2020 10.01.2020 some.domain.name user password apikey data/
 
  .. image:: https://github.com/pasiol/WilmaJSONReader/raw/main/images/rooms.png
+
+As library
+
+    from WilmaJSONReader import reader
+
+    ...
+
+    wilma_reader = reader.WilmaJSONReader(
+        url,
+        user,
+        password,
+        apikey,
+    )
+    wilma_reader.login()
+    dates = wilma_reader.get_dates(os.environ["STARTD"], os.environ["ENDD"], logger)
+    
+    for day in dates:
+        r = wilma_reader.get_schedule(day, "rooms")
+        schedules = r.json()
+        pprint(schedules)
+
 Installation
 ------------
 
+pip install WilmaJSONReader
+
 Requirements
 ^^^^^^^^^^^^
+
+Python 3.8 ->
 
 Compatibility
 -------------

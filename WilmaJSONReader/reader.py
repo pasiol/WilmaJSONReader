@@ -105,7 +105,9 @@ class WilmaJSONReader:
             return False
 
     def get_schedule(
-        self, day: str, resource_type: str
+        self,
+        day: str,
+        resource_type: str,
     ) -> Optional[requests.models.Response]:
         schedule = None
         if self._validate_schedule_type(resource_type):
