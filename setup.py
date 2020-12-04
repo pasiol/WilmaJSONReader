@@ -14,9 +14,9 @@ def read(filename):
 
 
 setup(
-    name="wilma_schedules_reader",
+    name="WilmaJSONReader",
     version="0.2.1",
-    url="wilma_schedules_reader",
+    url="WilmaJSONReader",
     license="GNU GENERAL PUBLIC LICENSE Version 3",
     author="Pasi Ollikainen",
     author_email="pasi.ollikainen@outlook.com",
