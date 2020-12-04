@@ -10,7 +10,7 @@ The Wilma rest client.
 Usage
 -----
 
-Wilma JSON schema is quite complex to parse. Easiest is use some framework to parsing data, for example the MongoDB Aggregation Framework.
+The Wilma JSON schema is quite complex to parse. Easiest way utilize it is use some framework, for example the MongoDB Aggregation Framework.
 
 From git repo::
 
@@ -54,7 +54,11 @@ Linux && Mac::
 
     deactivate
 
-Upgrade
+Windows
+
+   `https://docs.python.org/3.8/library/venv.html`_
+
+Upgrade::
 
     pip install WilmaJSONReader -U
 
