@@ -7,12 +7,12 @@ WilmaJSONReader
 
 The Wilma rest client.
 
-Supports getting daily data or date range of the resource. Valid resource type are rooms, teachers and students.
+Supports getting daily data or date range of the resource. Valid resource types are rooms, teachers and students.
 
 Usage
 -----
 
-The Wilma JSON schema is quite complex to parse. Easiest way utilize it is use some framework, for example the MongoDB Aggregation Framework.
+The Wilma JSON schema is quite complex to parse. The Easiest way utilize it, is use some framework, for example the MongoDB Aggregation Framework.
 
 From git repo::
 
@@ -52,7 +52,7 @@ Linux && Mac::
 
     pip install WilmaJSONReader
 
-    ..
+    ...
 
     deactivate
 
