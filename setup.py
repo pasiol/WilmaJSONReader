@@ -28,6 +28,7 @@ setup(
         "validators>=0.18.1",
         "requests>=2.25.0",
         "typing-extensions>=3.7.4.3",
+        "click>=7.1.2",
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
