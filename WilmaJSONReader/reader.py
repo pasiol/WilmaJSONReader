@@ -1,4 +1,3 @@
-from _typeshed import NoneType
 import sys
 import hashlib
 import time
