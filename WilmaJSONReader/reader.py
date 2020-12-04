@@ -98,7 +98,7 @@ class WilmaJSONReader:
             dates.append(str(day.strftime("%d.%m.%Y")))
         return dates
 
-    def validate_schedule_type(self, type: str) -> bool:
+    def __validate_schedule_type(self, type: str) -> bool:
         if type in ["rooms", "teachers", "students"]:
             return True
         else:
@@ -108,15 +108,21 @@ class WilmaJSONReader:
         self, day: str, resource_type: str
     ) -> Optional[requests.models.Response]:
         schedule = None
-        try:
-            schedule = f"schedule/index_json?p={day}&f={day}&{resource_type}=all"
-            r = self.session.get(self.wilma_url + schedule)
-            return r
-        except Exception as error:
-            self.logger.error(
-                f"Failing to get url: {self.wilma_url + schedule}: {error}"
+        if self.__validate_schedule_type(resource_type):
+            try:
+                schedule = f"schedule/index_json?p={day}&f={day}&{resource_type}=all"
+                r = self.session.get(self.wilma_url + schedule)
+                return r
+            except Exception as error:
+                self.logger.error(
+                    f"Failing to get url: {self.wilma_url + schedule}: {error}"
+                )
+                return None
+        else:
+            self.logger.critical(
+                f"Resource type {resource_type} is not valid Wilma resource type."
             )
-            return None
+            sys.exit(1)
 
 
 def write_json_file(
@@ -152,33 +158,30 @@ def main(
 
     reader = WilmaJSONReader(wilma_url, user, password, apikey)
     reader.login()
-    if reader.validate_schedule_type(resource_type):
-        dates = reader.get_dates(start=start_date, end=end_date, logger=reader.logger)
-        for day in dates:
-            succeed = False
-            while not succeed:
-                r = reader.get_schedule(day, resource_type)
-                if r is not None:
-                    if r.status_code == 200:
-                        succeed = True
-                        write_json_file(
-                            f"{output_path}/{resource_type}-{day}-data.json",
-                            r,
-                            reader.logger,
-                        )
-                    else:
-                        reader.logger.error(
-                            f"Getting status code: {r.status_code}. Nothing to save."
-                        )
+    dates = reader.get_dates(start=start_date, end=end_date, logger=reader.logger)
+    for day in dates:
+        succeed = False
+        while not succeed:
+            r = reader.get_schedule(day, resource_type)
+            if r is not None:
+                if r.status_code == 200:
+                    succeed = True
+                    write_json_file(
+                        f"{output_path}/{resource_type}-{day}-data.json",
+                        r,
+                        reader.logger,
+                    )
                 else:
                     reader.logger.error(
-                        f"Request failed. Sleeping 20 seconds and trying again."
+                        f"Getting status code: {r.status_code}. Nothing to save."
                     )
-                    time.sleep(20)
-            time.sleep(1)
-            reader.logger.info(f"Processed resource {resource_type} at the date {day}.")
-    else:
-        reader.logger.critical(f"Resource type {resource_type} is not valid.")
+            else:
+                reader.logger.error(
+                    f"Request failed. Sleeping 20 seconds and trying again."
+                )
+                time.sleep(20)
+        time.sleep(1)
+        reader.logger.info(f"Processed resource {resource_type} at the date {day}.")
 
 
 if __name__ == "__main__":
