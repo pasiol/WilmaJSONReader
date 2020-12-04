@@ -156,16 +156,21 @@ def main(
             succeed = False
             while not succeed:
                 r = reader.get_schedule(day, resource_type)
-                if r.status_code == 200:
-                    succeed = True
-                    write_json_file(
-                        f"{output_path}/{resource_type}-{day}-data.json",
-                        r,
-                        reader.logger,
-                    )
+                if r is not None:
+                    if r.status_code == 200:
+                        succeed = True
+                        write_json_file(
+                            f"{output_path}/{resource_type}-{day}-data.json",
+                            r,
+                            reader.logger,
+                        )
+                    else:
+                        reader.logger.error(
+                            f"Getting status code: {r.status_code}. Nothing to save."
+                        )
                 else:
-                    reader.logger.info(
-                        f"Getting status code: {r.status_code} Sleeping 20 seconds and trying again."
+                    reader.logger.error(
+                        f"Request failed. Sleeping 20 seconds and trying again."
                     )
                     time.sleep(20)
             time.sleep(1)
