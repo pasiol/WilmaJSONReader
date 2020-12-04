@@ -16,6 +16,7 @@ def read(filename):
 setup(
     name="WilmaJSONReader",
     packages=["WilmaJSONReader"],
+    entry_points={"console_scripts": ["wilmareader=WilmaJSONReader.reader:main"]},
     version="0.2.2",
     url="https://github.com/pasiol/WilmaJSONReader",
     license="GNU Lesser General Public License v3.0 or later (LGPLv3.0+)",
