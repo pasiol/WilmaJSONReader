@@ -56,7 +56,7 @@ Linux && Mac::
 
 Windows
 
-   `https://docs.python.org/3.8/library/venv.html`_
+   `<https://docs.python.org/3.8/library/venv.html>`_
 
 Upgrade::
 
